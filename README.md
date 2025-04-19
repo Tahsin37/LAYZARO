@@ -49,12 +49,10 @@ npx serve
 ## 🎨 Project Structure
 
 ```
-lyzaro-website/
+
 ├── index.html
 ├── style.css
 ├── script.js
-└── assets/
-    └── images/
 ```
 
 ## 🌟 Key Sections
