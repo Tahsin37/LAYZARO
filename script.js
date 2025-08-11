@@ -1,3 +1,43 @@
+// 1. Block common right-click context menu (which shows "Inspect")
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// 2. Block common keyboard shortcuts for DevTools
+document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+    // Ctrl+Shift+I (Windows/Linux) or Cmd+Option+I (Mac)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+    }
+    // Ctrl+Shift+J or Cmd+Option+J
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+    }
+    // Ctrl+U (View Source)
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
+        e.preventDefault();
+    }
+});
+
+// 3. Detect DevTools open by measuring timing of debugger statement or checking window size (not very reliable)
+(function() {
+    const threshold = 160;
+    setInterval(() => {
+        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        if (widthThreshold || heightThreshold) {
+            alert("Developer Window is currently not avilable!");
+            // or you can redirect or do something else
+        }
+    }, 1000);
+})();
+
+
+
+
+
 function locoanimation(){
     gsap.registerPlugin(ScrollTrigger);
 
@@ -262,4 +302,5 @@ gsap.to(".sticky-element", {
       scrub: true,
       pin: true
     }
+
   });
